@@ -18,7 +18,7 @@ public class StuManage extends JFrame implements ActionListener{
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-
+       StuManage stumanage=new StuManage();
 	}
 	public StuManage() {
 		jp1=new JPanel();
@@ -72,9 +72,25 @@ public class StuManage extends JFrame implements ActionListener{
 	}
 
 	@Override
-	public void actionPerformed(ActionEvent arg0) {
+	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-		
+		//判断哪个按钮被点击
+		if(e.getSource()==jb1) {
+			if(this.jtf.getText().trim().equals("")) {
+				JOptionPane.showMessageDialog(this,"不能为空");
+				return;
+			}
+			String name=this.jtf.getText().trim();
+			//写一个sql语句
+			//因为把对表的数据封装装到StuModel
+			String sql="select * from stu where name='"+name+"'";
+			sm=new StuModel(sql);
+			//更新JTable
+			jt.setModel(sm);
+		}
+		if(e.getSource()==jb2) {
+			
+		}
 	}
 
 }
